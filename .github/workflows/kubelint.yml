@@ -19,6 +19,6 @@ jobs:
       - name: Lint Helm Charts
         run: kubelinter lint charts
 
-      - uses: helm/chart-testing-action@v4
+      - uses: actions/checkout@v4
         with:
           chart-path: helm
