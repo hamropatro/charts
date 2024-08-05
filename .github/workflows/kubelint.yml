@@ -1,4 +1,4 @@
-name: Lint and Test Helm Charts
+name: Check Kubernetes YAMLs
 
 on:
   push:
@@ -7,18 +7,12 @@ on:
     branches: [ main ]
 
 jobs:
-  lint_and_test:
+  scan:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4   
+      - uses: actions/checkout@v3
 
-
-      # ... KubeLinter installation steps ...
-
-      - name: Lint Helm Charts
-        run: kubelinter lint charts
-
-      - uses: actions/checkout@v4
+      - name: Scan YAMLs with KubeLinter
+        uses: stackrox/kube-linter-action@v1.0.2
         with:
-          chart-path: helm
+          directory: charts
