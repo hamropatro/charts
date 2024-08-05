@@ -10,8 +10,8 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
+      - name: Checkout code
+        uses: actions/checkout@v3
       - name: Scan YAMLs with KubeLinter
         uses: stackrox/kube-linter-action@v1.0.2
         with:
