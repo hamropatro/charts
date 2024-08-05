@@ -1,0 +1,24 @@
+name: Lint and Test Helm Charts
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint_and_test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3   
+
+
+      # ... KubeLinter installation steps ...
+
+      - name: Lint Helm Charts
+        run: kubelinter lint charts
+
+      - uses: helm/chart-testing-action@v2
+        with:
+          chart-path: helm
